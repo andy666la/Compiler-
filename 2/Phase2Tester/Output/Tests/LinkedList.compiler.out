@@ -1,0 +1,460 @@
+const vmt_Element
+	:Element.Init
+	:Element.GetAge
+	:Element.GetSalary
+	:Element.GetMarried
+	:Element.Equal
+	:Element.Compare
+
+const vmt_List
+	:List.Init
+	:List.InitNew
+	:List.Insert
+	:List.SetNext
+	:List.Delete
+	:List.Search
+	:List.GetEnd
+	:List.GetElem
+	:List.GetNext
+	:List.Print
+
+const vmt_LL
+	:LL.Start
+
+func Main()
+	t.0 = HeapAllocZ(4)
+	[t.0] = :vmt_LL
+	if t.0 goto :null1
+	Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	t.1 = [t.1+0]
+	t.2 = call t.1(t.0)
+	PrintIntS(t.2)
+	ret
+
+func Element.Init(this v_Age v_Salary v_Married)
+	[this+4] = v_Age
+	[this+8] = v_Salary
+	[this+12] = v_Married
+	t.3 = 1
+	ret t.3
+
+func Element.GetAge(this)
+	t.0 = [this+4]
+	ret t.0
+
+func Element.GetSalary(this)
+	t.0 = [this+8]
+	ret t.0
+
+func Element.GetMarried(this)
+	t.0 = [this+12]
+	ret t.0
+
+func Element.Equal(this other)
+	t.1 = 1
+	t.0 = t.1
+	t.3 = [other]
+	t.3 = [t.3+4]
+	t.4 = call t.3(other)
+	t.2 = t.4
+	t.5 = [this]
+	t.5 = [t.5+20]
+	t.7 = [this+4]
+	t.6 = call t.5(this t.2 t.7)
+	t.8 = Sub(1 t.6)
+	if0 t.8 goto :if2_else
+		t.9 = 0
+		t.0 = t.9
+		goto :if2_end
+	if2_else:
+		t.11 = [other]
+		t.11 = [t.11+8]
+		t.12 = call t.11(other)
+		t.10 = t.12
+		t.13 = [this]
+		t.13 = [t.13+20]
+		t.15 = [this+8]
+		t.14 = call t.13(this t.10 t.15)
+		t.16 = Sub(1 t.14)
+		if0 t.16 goto :if3_else
+			t.17 = 0
+			t.0 = t.17
+			goto :if3_end
+		if3_else:
+			t.18 = [this+12]
+			if0 t.18 goto :if4_else
+				t.19 = [other]
+				t.19 = [t.19+12]
+				t.20 = call t.19(other)
+				t.21 = Sub(1 t.20)
+				if0 t.21 goto :if5_else
+					t.22 = 0
+					t.0 = t.22
+					goto :if5_end
+				if5_else:
+					t.23 = 0
+				if5_end:
+				goto :if4_end
+			if4_else:
+				t.24 = [other]
+				t.24 = [t.24+12]
+				t.25 = call t.24(other)
+				if0 t.25 goto :if6_else
+					t.26 = 0
+					t.0 = t.26
+					goto :if6_end
+				if6_else:
+					t.23 = 0
+				if6_end:
+			if4_end:
+		if3_end:
+	if2_end:
+	ret t.0
+
+func Element.Compare(this num1 num2)
+	t.1 = 0
+	t.0 = t.1
+	t.3 = Add(num2 1)
+	t.2 = t.3
+	t.4 = LtS(num1 num2)
+	if0 t.4 goto :if7_else
+		t.5 = 0
+		t.0 = t.5
+		goto :if7_end
+	if7_else:
+		t.6 = LtS(num1 t.2)
+		t.7 = Sub(1 t.6)
+		if0 t.7 goto :if8_else
+			t.8 = 0
+			t.0 = t.8
+			goto :if8_end
+		if8_else:
+			t.9 = 1
+			t.0 = t.9
+		if8_end:
+	if7_end:
+	ret t.0
+
+func List.Init(this)
+	t.1 = 1
+	[this+12] = t.1
+	t.2 = 1
+	ret t.2
+
+func List.InitNew(this v_elem v_next v_end)
+	[this+12] = v_end
+	[this+4] = v_elem
+	[this+8] = v_next
+	t.3 = 1
+	ret t.3
+
+func List.Insert(this new_elem)
+	t.0 = this
+	t.2 = HeapAllocZ(16)
+	[t.2] = :vmt_List
+	if t.2 goto :null9
+	Error("null pointer")
+	null9:
+	t.1 = t.2
+	t.4 = [t.1]
+	t.4 = [t.4+4]
+	t.6 = 0
+	t.5 = call t.4(t.1 new_elem t.0 t.6)
+	t.3 = t.5
+	ret t.1
+
+func List.SetNext(this v_next)
+	[this+8] = v_next
+	t.1 = 1
+	ret t.1
+
+func List.Delete(this e)
+	t.0 = this
+	t.2 = 0
+	t.1 = t.2
+	t.4 = Sub(0 1)
+	t.3 = t.4
+	t.5 = this
+	t.6 = this
+	t.8 = [this+12]
+	t.7 = t.8
+	t.10 = [this+4]
+	t.9 = t.10
+	loop10_begin:
+	t.11 = Sub(1 t.7)
+	t.12 = Sub(1 t.1)
+	t.13 = MulS(t.11 t.12)
+	if0 t.13 goto :loop10_end
+		t.14 = [e]
+		t.14 = [t.14+16]
+		t.15 = call t.14(e t.9)
+		if0 t.15 goto :if11_else
+			t.16 = 1
+			t.1 = t.16
+			t.17 = LtS(t.3 0)
+			if0 t.17 goto :if12_else
+				t.18 = [t.5]
+				t.18 = [t.18+32]
+				t.19 = call t.18(t.5)
+				t.0 = t.19
+				goto :if12_end
+			if12_else:
+				t.20 = Sub(0 555)
+				PrintIntS(t.20)
+				t.22 = [t.6]
+				t.22 = [t.22+12]
+				t.24 = [t.5]
+				t.24 = [t.24+32]
+				t.25 = call t.24(t.5)
+				t.23 = call t.22(t.6 t.25)
+				t.21 = t.23
+				t.26 = Sub(0 555)
+				PrintIntS(t.26)
+			if12_end:
+			goto :if11_end
+		if11_else:
+			t.27 = 0
+		if11_end:
+		t.28 = Sub(1 t.1)
+		if0 t.28 goto :if13_else
+			t.6 = t.5
+			t.29 = [t.5]
+			t.29 = [t.29+32]
+			t.30 = call t.29(t.5)
+			t.5 = t.30
+			t.31 = [t.5]
+			t.31 = [t.31+24]
+			t.32 = call t.31(t.5)
+			t.7 = t.32
+			t.33 = [t.5]
+			t.33 = [t.33+28]
+			t.34 = call t.33(t.5)
+			t.9 = t.34
+			t.3 = 1
+			goto :if13_end
+		if13_else:
+			t.27 = 0
+		if13_end:
+		goto :loop10_begin
+	loop10_end:
+	ret t.0
+
+func List.Search(this e)
+	t.0 = 0
+	t.1 = this
+	t.3 = [this+12]
+	t.2 = t.3
+	t.5 = [this+4]
+	t.4 = t.5
+	loop14_begin:
+	t.6 = Sub(1 t.2)
+	if0 t.6 goto :loop14_end
+		t.7 = [e]
+		t.7 = [t.7+16]
+		t.8 = call t.7(e t.4)
+		if0 t.8 goto :if15_else
+			t.0 = 1
+			goto :if15_end
+		if15_else:
+			t.9 = 0
+		if15_end:
+		t.10 = [t.1]
+		t.10 = [t.10+32]
+		t.11 = call t.10(t.1)
+		t.1 = t.11
+		t.12 = [t.1]
+		t.12 = [t.12+24]
+		t.13 = call t.12(t.1)
+		t.2 = t.13
+		t.14 = [t.1]
+		t.14 = [t.14+28]
+		t.15 = call t.14(t.1)
+		t.4 = t.15
+		goto :loop14_begin
+	loop14_end:
+	ret t.0
+
+func List.GetEnd(this)
+	t.0 = [this+12]
+	ret t.0
+
+func List.GetElem(this)
+	t.0 = [this+4]
+	ret t.0
+
+func List.GetNext(this)
+	t.0 = [this+8]
+	ret t.0
+
+func List.Print(this)
+	t.0 = this
+	t.2 = [this+12]
+	t.1 = t.2
+	t.4 = [this+4]
+	t.3 = t.4
+	loop16_begin:
+	t.5 = Sub(1 t.1)
+	if0 t.5 goto :loop16_end
+		t.6 = [t.3]
+		t.6 = [t.6+4]
+		t.7 = call t.6(t.3)
+		PrintIntS(t.7)
+		t.8 = [t.0]
+		t.8 = [t.8+32]
+		t.9 = call t.8(t.0)
+		t.0 = t.9
+		t.10 = [t.0]
+		t.10 = [t.10+24]
+		t.11 = call t.10(t.0)
+		t.1 = t.11
+		t.12 = [t.0]
+		t.12 = [t.12+28]
+		t.13 = call t.12(t.0)
+		t.3 = t.13
+		goto :loop16_begin
+	loop16_end:
+	t.14 = 1
+	ret t.14
+
+func LL.Start(this)
+	t.1 = HeapAllocZ(16)
+	[t.1] = :vmt_List
+	if t.1 goto :null17
+	Error("null pointer")
+	null17:
+	t.0 = t.1
+	t.3 = [t.0]
+	t.3 = [t.3+0]
+	t.4 = call t.3(t.0)
+	t.2 = t.4
+	t.5 = t.0
+	t.6 = [t.5]
+	t.6 = [t.6+0]
+	t.7 = call t.6(t.5)
+	t.2 = t.7
+	t.8 = [t.5]
+	t.8 = [t.8+36]
+	t.9 = call t.8(t.5)
+	t.2 = t.9
+	t.11 = HeapAllocZ(16)
+	[t.11] = :vmt_Element
+	if t.11 goto :null18
+	Error("null pointer")
+	null18:
+	t.10 = t.11
+	t.12 = [t.10]
+	t.12 = [t.12+0]
+	t.14 = 0
+	t.13 = call t.12(t.10 25 37000 t.14)
+	t.2 = t.13
+	t.15 = [t.5]
+	t.15 = [t.15+8]
+	t.16 = call t.15(t.5 t.10)
+	t.5 = t.16
+	t.17 = [t.5]
+	t.17 = [t.17+36]
+	t.18 = call t.17(t.5)
+	t.2 = t.18
+	PrintIntS(10000000)
+	t.19 = HeapAllocZ(16)
+	[t.19] = :vmt_Element
+	if t.19 goto :null19
+	Error("null pointer")
+	null19:
+	t.10 = t.19
+	t.20 = [t.10]
+	t.20 = [t.20+0]
+	t.22 = 1
+	t.21 = call t.20(t.10 39 42000 t.22)
+	t.2 = t.21
+	t.23 = t.10
+	t.24 = [t.5]
+	t.24 = [t.24+8]
+	t.25 = call t.24(t.5 t.10)
+	t.5 = t.25
+	t.26 = [t.5]
+	t.26 = [t.26+36]
+	t.27 = call t.26(t.5)
+	t.2 = t.27
+	PrintIntS(10000000)
+	t.28 = HeapAllocZ(16)
+	[t.28] = :vmt_Element
+	if t.28 goto :null20
+	Error("null pointer")
+	null20:
+	t.10 = t.28
+	t.29 = [t.10]
+	t.29 = [t.29+0]
+	t.31 = 0
+	t.30 = call t.29(t.10 22 34000 t.31)
+	t.2 = t.30
+	t.32 = [t.5]
+	t.32 = [t.32+8]
+	t.33 = call t.32(t.5 t.10)
+	t.5 = t.33
+	t.34 = [t.5]
+	t.34 = [t.34+36]
+	t.35 = call t.34(t.5)
+	t.2 = t.35
+	t.37 = HeapAllocZ(16)
+	[t.37] = :vmt_Element
+	if t.37 goto :null21
+	Error("null pointer")
+	null21:
+	t.36 = t.37
+	t.38 = [t.36]
+	t.38 = [t.38+0]
+	t.40 = 0
+	t.39 = call t.38(t.36 27 34000 t.40)
+	t.2 = t.39
+	t.41 = [t.5]
+	t.41 = [t.41+20]
+	t.42 = call t.41(t.5 t.23)
+	PrintIntS(t.42)
+	t.43 = [t.5]
+	t.43 = [t.43+20]
+	t.44 = call t.43(t.5 t.36)
+	PrintIntS(t.44)
+	PrintIntS(10000000)
+	t.45 = HeapAllocZ(16)
+	[t.45] = :vmt_Element
+	if t.45 goto :null22
+	Error("null pointer")
+	null22:
+	t.10 = t.45
+	t.46 = [t.10]
+	t.46 = [t.46+0]
+	t.48 = 0
+	t.47 = call t.46(t.10 28 35000 t.48)
+	t.2 = t.47
+	t.49 = [t.5]
+	t.49 = [t.49+8]
+	t.50 = call t.49(t.5 t.10)
+	t.5 = t.50
+	t.51 = [t.5]
+	t.51 = [t.51+36]
+	t.52 = call t.51(t.5)
+	t.2 = t.52
+	PrintIntS(2220000)
+	t.53 = [t.5]
+	t.53 = [t.53+16]
+	t.54 = call t.53(t.5 t.23)
+	t.5 = t.54
+	t.55 = [t.5]
+	t.55 = [t.55+36]
+	t.56 = call t.55(t.5)
+	t.2 = t.56
+	PrintIntS(33300000)
+	t.57 = [t.5]
+	t.57 = [t.57+16]
+	t.58 = call t.57(t.5 t.10)
+	t.5 = t.58
+	t.59 = [t.5]
+	t.59 = [t.59+36]
+	t.60 = call t.59(t.5)
+	t.2 = t.60
+	PrintIntS(44440000)
+	ret 0
+

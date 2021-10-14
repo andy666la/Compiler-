@@ -1,0 +1,35 @@
+const vmt_A
+	:A.run
+	:A.helper
+
+func Main()
+	t.0 = HeapAllocZ(4)
+	[t.0] = :vmt_A
+	if t.0 goto :null1
+	Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	t.1 = [t.1+0]
+	t.2 = call t.1(t.0)
+	PrintIntS(t.2)
+	ret
+
+func A.run(this)
+	t.1 = [this]
+	t.1 = [t.1+4]
+	t.2 = call t.1(this 12)
+	t.0 = t.2
+	t.4 = [this]
+	t.4 = [t.4+4]
+	t.5 = call t.4(this 15)
+	t.3 = t.5
+	t.6 = Add(t.0 t.3)
+	ret t.6
+
+func A.helper(this param)
+	t.0 = param
+	t.1 = Add(param 1)
+	param = t.1
+	PrintIntS(t.0)
+	ret t.0
+

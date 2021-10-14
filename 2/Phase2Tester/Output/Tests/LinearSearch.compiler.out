@@ -1,0 +1,159 @@
+const vmt_LS
+	:LS.Start
+	:LS.Print
+	:LS.Search
+	:LS.Init
+
+func Main()
+	t.0 = HeapAllocZ(12)
+	[t.0] = :vmt_LS
+	if t.0 goto :null1
+	Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	t.1 = [t.1+0]
+	t.2 = call t.1(t.0 10)
+	PrintIntS(t.2)
+	ret
+
+func LS.Start(this sz)
+	t.1 = [this]
+	t.1 = [t.1+12]
+	t.2 = call t.1(this sz)
+	t.0 = t.2
+	t.4 = [this]
+	t.4 = [t.4+4]
+	t.5 = call t.4(this)
+	t.3 = t.5
+	PrintIntS(9999)
+	t.6 = [this]
+	t.6 = [t.6+8]
+	t.7 = call t.6(this 8)
+	PrintIntS(t.7)
+	t.8 = [this]
+	t.8 = [t.8+8]
+	t.9 = call t.8(this 12)
+	PrintIntS(t.9)
+	t.10 = [this]
+	t.10 = [t.10+8]
+	t.11 = call t.10(this 17)
+	PrintIntS(t.11)
+	t.12 = [this]
+	t.12 = [t.12+8]
+	t.13 = call t.12(this 50)
+	PrintIntS(t.13)
+	ret 55
+
+func LS.Print(this)
+	t.0 = 1
+	loop2_begin:
+	t.1 = [this+8]
+	t.2 = LtS(t.0 t.1)
+	if0 t.2 goto :loop2_end
+		t.3 = [this+4]
+		s = [t.3]
+		i = t.0
+		ok = LtS(i s)
+		if ok goto :Visit3
+		Error("array index out of bounds")
+		Visit3: ok = LtS(-1 i)
+		if ok goto :NewVisit3
+		Error("array index out of bounds")
+		NewVisit3: o = MulS(i 4)
+		d = Add(t.3 o)
+		t.4 = [d+4]
+		PrintIntS(t.4)
+		t.5 = Add(t.0 1)
+		t.0 = t.5
+		goto :loop2_begin
+	loop2_end:
+	ret 0
+
+func LS.Search(this num)
+	t.0 = 1
+	t.2 = 0
+	t.1 = t.2
+	t.3 = 0
+	loop4_begin:
+	t.4 = [this+8]
+	t.5 = LtS(t.0 t.4)
+	if0 t.5 goto :loop4_end
+		t.7 = [this+4]
+		s = [t.7]
+		i = t.0
+		ok = LtS(i s)
+		if ok goto :Visit5
+		Error("array index out of bounds")
+		Visit5: ok = LtS(-1 i)
+		if ok goto :NewVisit5
+		Error("array index out of bounds")
+		NewVisit5: o = MulS(i 4)
+		d = Add(t.7 o)
+		t.8 = [d+4]
+		t.6 = t.8
+		t.10 = Add(num 1)
+		t.9 = t.10
+		t.11 = LtS(t.6 num)
+		if0 t.11 goto :if6_else
+			t.12 = 0
+			goto :if6_end
+		if6_else:
+			t.13 = LtS(t.6 t.9)
+			t.14 = Sub(1 t.13)
+			if0 t.14 goto :if7_else
+				t.12 = 0
+				goto :if7_end
+			if7_else:
+				t.15 = 1
+				t.1 = t.15
+				t.3 = 1
+				t.16 = [this+8]
+				t.0 = t.16
+			if7_end:
+		if6_end:
+		t.17 = Add(t.0 1)
+		t.0 = t.17
+		goto :loop4_begin
+	loop4_end:
+	ret t.3
+
+func LS.Init(this sz)
+	[this+8] = sz
+	blen = MulS(sz 4)
+	len = Add(blen 4)
+	t.2 = HeapAllocZ(len)
+	[t.2] = sz
+	[this+4] = t.2
+	t.3 = 1
+	t.5 = [this+8]
+	t.6 = Add(t.5 1)
+	t.4 = t.6
+	loop8_begin:
+	t.7 = [this+8]
+	t.8 = LtS(t.3 t.7)
+	if0 t.8 goto :loop8_end
+		t.10 = MulS(2 t.3)
+		t.9 = t.10
+		t.12 = Sub(t.4 3)
+		t.11 = t.12
+		t.13 = [this+4]
+		t.14 = Add(t.9 t.11)
+		s = [t.13]
+		i = t.3
+		ok = LtS(i s)
+		if ok goto :Visit9
+		Error("array index out of bounds")
+		Visit9: ok = LtS(-1 i)
+		if ok goto :NewVisit9
+		Error("array index out of bounds")
+		NewVisit9: o = MulS(i 4)
+		d = Add(t.13 o)
+		[d+4] = t.14
+		t.15 = Add(t.3 1)
+		t.3 = t.15
+		t.16 = Sub(t.4 1)
+		t.4 = t.16
+		goto :loop8_begin
+	loop8_end:
+	ret 0
+

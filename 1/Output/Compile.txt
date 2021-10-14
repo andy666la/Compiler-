@@ -1,0 +1,11 @@
+./Output/Unzipped/hw1/Typecheck.java:13: error: cannot find symbol
+            program.accept(new FirstPhaseVisitor(), env);
+                               ^
+  symbol:   class FirstPhaseVisitor
+  location: class Typecheck
+./Output/Unzipped/hw1/Typecheck.java:18: error: cannot find symbol
+                program.accept(new SecondPhaseVisitor(), env);
+                                   ^
+  symbol:   class SecondPhaseVisitor
+  location: class Typecheck
+2 errors
